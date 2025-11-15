@@ -2,11 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fairways Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    aside {
+      width: 220px;
+      background: #2c3e50;
+      color: white;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    aside h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+      width: 100% !important;
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to the Fairways Dashboard</h1>
-  <p>This site is live on GitHub Pages.</p>
+  <aside>
+    <h2>Fairways Dashboard</h2>
+    <nav>
+      <p>Home</p>
+      <p>Reports</p>
+      <p>Settings</p>
+    </nav>
+  </aside>
+
+  <main>
+    <h1>Welcome to the Fairways Dashboard</h1>
+    <div class="card">
+      <h2>Bar Chart</h2>
+      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Pie Chart</h2>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </main>
+
+  <script>
+    const barCtx = document.getElementById('barChart');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['North', 'South', 'East', 'West'],
+        datasets: [{
+          label: 'Revenue ($k)',
+          data: [12, 19, 3, 5],
+          backgroundColor: '#3498db',
+        }]
+      }
+    });
+
+    const pieCtx = document.getElementById('pieChart');
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow'],
+        datasets: [{
+          label: 'Users',
+          data: [10, 20, 30],
+          backgroundColor: ['#e74c3c', '#2980b9', '#f1c40f']
+        }]
+      }
+    });
+  </script>
 </body>
 </html>
